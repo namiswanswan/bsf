@@ -1,0 +1,57 @@
+name: bsf
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  flutter_svg: ^2.0.10+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/donut/donut_2.png
+    - assets/images/donut/donut_3.png
+    - assets/images/donut/donut_4.png
+    - assets/images/donut/donut_5.png
+    - assets/images/donut/donut_6.png
+    - assets/images/donut/donut_7.png
+    - assets/images/logo/donut2_logo.jpg
+    - assets/images/logo/gladis_logo.jpg
+    - assets/images/logo/leliuious_logo.jpg
+    - assets/images/logo/lila_logo.png
+    - assets/images/logo/monginis-logo.png
+    - assets/images/logo/sweet-shop-logo.jpg
+    - assets/images/logo/tasties_logo.jpg
+    - assets/images/burger.png
+    - assets/images/cloche.png
+    - assets/images/delivery.png
+    - assets/images/discount.png
+    - assets/images/donut.png
+    - assets/images/fast-delivery.png
+    - assets/images/logo.png
+    - assets/images/pizza-slice.png
+    - assets/images/temp_donut.png
+    - assets/images/temp_donat.jpg
+    - assets/images/temp_vendor_bg.png
+    - assets/images/temp_vendor_logo.png
+
+  fonts:
+    - family: Outfit
+      fonts:
+        - asset: assets/fonts/Outfit-Bold.ttf
+        - asset: assets/fonts/Outfit-Medium.ttf
+        - asset: assets/fonts/Outfit-Regular.ttf
+        - asset: assets/fonts/Outfit-SemiBold.ttf

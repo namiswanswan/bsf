@@ -1,44 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../utils/ui_helper.dart';
 import '../../utils/utils.dart';
 import '../custom_widgets.dart';
+import '/screens/home_screen/home_screen.dart';
+import '/screens/cart.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
+    Key? key,
     this.title = '',
-    this.isTitleCentered,
     this.hasBackButton = true,
+    this.onBackTap,
+    this.isTitleCentered,
     this.isHeroAnimated = true,
     this.actions,
-    this.onBackTap,
     this.showOptions = true,
-  });
+  }) : super(key: key);
 
-  ///Title of text
   final String title;
-
-  ///Should the title be centered
-  ///
-  ///[Default is null]
-  final bool? isTitleCentered;
-
-  ///Platform adaptive back icon
-  ///
-  ///[Default is true]
   final bool hasBackButton;
-
-  ///The widgets are rendered from end
-  final List<Widget>? actions;
-
-  ///Is Hero animated
-  final bool isHeroAnimated;
-
-  ///Show Action Option
-  final bool showOptions;
-
   final VoidCallback? onBackTap;
+  final bool? isTitleCentered;
+  final List<Widget>? actions;
+  final bool isHeroAnimated;
+  final bool showOptions;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +44,7 @@ class CustomAppBar extends StatelessWidget {
           children: [
             Stack(
               children: <Widget>[
-                //Back Button
+                // Back Button
                 if (hasBackButton)
                   Align(
                     alignment: Alignment.centerLeft,
@@ -71,21 +57,17 @@ class CustomAppBar extends StatelessWidget {
                           ),
                           Text(
                             'Back',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline6!
-                                .copyWith(
-                                  fontSize: rf(14),
-                                  color:
-                                      showOptions ? Colors.black : Colors.white,
-                                ),
+                            style: Theme.of(context).textTheme.headline6!.copyWith(
+                              fontSize: rf(14),
+                              color: showOptions ? Colors.black : Colors.white,
+                            ),
                           ),
                         ],
                       ),
                     ),
                   ),
 
-                //Main Heading and Title
+                // Main Heading and Title
                 Align(
                   child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 50),
@@ -98,16 +80,21 @@ class CustomAppBar extends StatelessWidget {
                   ),
                 ),
 
-                //Actions
+                // Actions
                 if (showOptions)
                   Align(
                     alignment: Alignment.centerRight,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        CIcons.fromMaterial(
-                          icon: Icons.shopping_bag_outlined,
-                          semanticLabel: 'Bag',
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
+                          },
+                          child: CIcons.fromMaterial(
+                            icon: Icons.shopping_bag_outlined,
+                            semanticLabel: 'Bag',
+                          ),
                         ),
                         SizedBox(width: rw(space3x)),
                         CIcons.fromMaterial(
@@ -119,7 +106,6 @@ class CustomAppBar extends StatelessWidget {
                   ),
               ],
             ),
-            //Back Button
           ],
         ),
       ),
@@ -144,28 +130,5 @@ class PlatformIcon extends StatelessWidget {
         Navigator.pop(context);
       },
     );
-    // if (Platform.isIOS) {
-    //   return Buttons.icon(
-    //     context: context,
-    //     icon: CupertinoIcons.back,
-    //     right: space1x,
-    //     iconColor: color,
-    //     semanticLabel: 'Back',
-    //     onPressed: () {
-    //       Navigator.pop(context);
-    //     },
-    //   );
-    // } else {
-    //   return Buttons.icon(
-    //     context: context,
-    //     icon: Icons.arrow_back_sharp,
-    //     right: space1x,
-    //     iconColor: color,
-    //     semanticLabel: 'Back',
-    //     onPressed: () {
-    //       Navigator.pop(context);
-    //     },
-    //   );
-    // }
   }
 }

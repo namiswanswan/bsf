@@ -1,18 +1,10 @@
-// ignore_for_file: avoid_classes_with_only_static_members
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../utils/utils.dart';
 import '../custom_widgets.dart';
 import 'platform_button.dart';
 
 class Buttons {
-  ///Expanded Full Width Button
-  ///
-  ///Customizable with custom width
-  ///
-  ///[Default isLoading is false]
   static Widget expanded({
     required BuildContext context,
     required String text,
@@ -44,12 +36,6 @@ class Buttons {
             ),
     );
   }
-
-  ///Expanded Full Width Button
-  ///
-  ///Customizable with custom width
-  ///
-  ///[Default isLoading is false]
   static Widget expandedWithIcon({
     required BuildContext context,
     required String text,
@@ -92,10 +78,6 @@ class Buttons {
       ),
     );
   }
-
-  ///Flexible button
-  ///
-  ///[Default isLoading is false]
   static Widget flexible({
     required BuildContext context,
     required String text,
@@ -128,10 +110,6 @@ class Buttons {
             ),
     );
   }
-
-  ///Normal Text Button with default 8 padding
-  ///
-  ///[Default isLoading is false]
   static Widget text({
     required BuildContext context,
     required String text,
@@ -164,13 +142,7 @@ class Buttons {
     );
   }
 
-  ///Icon Button
-  ///
-  ///if icon provided -> material Icon
-  ///
-  ///if svgPath provided -> svgAsset Icon
-  ///
-  ///[Default isLoading is false]
+
   static Widget icon({
     required BuildContext context,
     required String semanticLabel,

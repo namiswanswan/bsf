@@ -1,5 +1,3 @@
-//Home Screen Data
-
 List<Map<String, dynamic>> vendorList = const [
   {
     "imagePath": "assets/images/logo/gladis_logo.jpg",

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../core/utils/ui_helper.dart';
 import '../../../core/widgets/icon/custom_icons.dart';
 

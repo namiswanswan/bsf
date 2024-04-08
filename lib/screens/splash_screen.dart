@@ -1,12 +1,11 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:bsf/core/animations/animations.dart';
-import 'package:bsf/core/utils/utils.dart';
-
-import 'home_screen/home_screen.dart';
+import 'package:lottie/lottie.dart';
+import 'package:bsf/screens/Login/login_screen.dart'; // Import the LoginScreen class
 
 class SplashScreen extends StatefulWidget {
+  static const String routeName = '/'; // Define route name for SplashScreen
+
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
@@ -16,22 +15,17 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    _next();
     super.initState();
+    _loadSplashScreen();
   }
 
-  _next() {
-    Timer(
-      const Duration(milliseconds: 450),
-      () {
-        Navigation.push(
-          context,
-          customPageTransition: PageTransition(
-            child: const HomeScreen(),
-            type: PageTransitionType.fadeIn,
-          ),
-        );
-      },
+  void _loadSplashScreen() async {
+    // Simulate a delay of 1 second
+    await Future.delayed(const Duration(seconds: 1));
+    // Navigate to the next screen
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => LoginScreen()),
     );
   }
 
@@ -39,7 +33,14 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: Container(),
+      body: Center(
+        child: Lottie.asset(
+          'assets/lottie/load.json',
+          width: 200, // Adjust the width as needed
+          height: 200, // Adjust the height as needed
+          fit: BoxFit.contain,
+        ),
+      ),
     );
   }
 }

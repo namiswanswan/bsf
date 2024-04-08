@@ -19,44 +19,36 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   late double _height;
 
-  final _duration = const Duration(milliseconds: 750);
-  final _psudoDuration = const Duration(milliseconds: 150);
+  final _duration = const Duration(milliseconds: 500);
+  final _pseudoDuration = const Duration(milliseconds: 150);
 
   _navigateBack() async {
     await _animateContainerFromBottomToTop();
-
     Navigation.pop(context);
   }
 
   _animateContainerFromBottomToTop() async {
-    //Animate back to default value
-    _height = MediaQuery.of(context).padding.top + rh(50);
-    setState(() {});
-
-    //Wait till animation is finished
-    await Future.delayed(_duration);
+    setState(() {
+      _height = 0; // Set height to 0 for quick transition
+    });
+    await Future.delayed(_pseudoDuration); // Wait for the pseudo duration
+    setState(() {
+      _height = MediaQuery.of(context).padding.top + rh(50); // Animate back to default value
+    });
   }
 
   _animateContainerFromTopToBottom() async {
-    //Wait
-    await Future.delayed(_psudoDuration);
-
-    //Animate from top to bottom
-    _height = MediaQuery.of(context).size.height;
-    setState(() {});
+    await Future.delayed(_pseudoDuration); // Wait for the pseudo duration
+    setState(() {
+      _height = MediaQuery.of(context).size.height; // Animate from top to bottom
+    });
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    //Default height
-
-    _height = MediaQuery.of(context).padding.top + rh(50);
-    setState(() {});
-
-    //Animate Container from Top to bottom
-    _animateContainerFromTopToBottom();
+  void initState() {
+    super.initState();
+    _height = MediaQuery.of(context).padding.top + rh(50); // Set default height
+    _animateContainerFromTopToBottom(); // Animate Container from Top to bottom
   }
 
   @override
@@ -158,11 +150,11 @@ class _ProductScreenState extends State<ProductScreen> {
                         Text(
                           '\$12.95',
                           style:
-                              Theme.of(context).textTheme.headline4!.copyWith(
-                                    color: Theme.of(context).primaryColorDark,
-                                    fontSize: rf(18),
-                                    fontWeight: FontWeight.normal,
-                                  ),
+                          Theme.of(context).textTheme.headline4!.copyWith(
+                            color: Theme.of(context).primaryColorDark,
+                            fontSize: rf(18),
+                            fontWeight: FontWeight.normal,
+                          ),
                         ),
                         SizedBox(height: rh(space2x)),
                         Text(

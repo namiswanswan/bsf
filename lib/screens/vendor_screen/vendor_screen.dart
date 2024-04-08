@@ -1,13 +1,15 @@
+import 'package:bsf/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bsf/core/animations/animations.dart';
 import 'package:bsf/core/utils/ui_helper.dart';
 import 'package:bsf/core/utils/utils.dart';
 import 'package:bsf/core/widgets/custom_widgets.dart';
 import 'package:bsf/data.dart';
-import 'package:bsf/screens/home_screen/widgets/clipped_container.dart';
-import 'package:bsf/screens/product_screen/product_screen.dart';
+import 'package:bsf/screens/splash_screen.dart';
 import 'package:bsf/screens/vendor_screen/widgets/product_item_card.dart';
 import 'package:bsf/screens/vendor_screen/widgets/vendor_info_card.dart';
+import 'package:bsf/screens/home_screen/widgets/clipped_container.dart';
+import 'package:bsf/screens/product_screen/product_screen.dart';
 
 class VendorScreen extends StatefulWidget {
   const VendorScreen({Key? key}) : super(key: key);
@@ -20,44 +22,48 @@ class _VendorScreenState extends State<VendorScreen> {
   late double _height;
 
   final _duration = const Duration(milliseconds: 750);
-  final _psudoDuration = const Duration(milliseconds: 150);
+  final _pseudoDuration = const Duration(milliseconds: 150);
+
+  bool get isHomeScreen =>
+      ModalRoute.of(context)?.settings.name == '/home';
 
   _navigate() async {
     await _animateContainerFromBottomToTop();
 
-    //push to products screen
-    //wait till product is pooped
-    await Navigation.push(
+    // Execute splash screen transitions
+    await Navigator.pushReplacementNamed(context, '/splash');
+
+    // Push to products screen
+    // Wait till product is popped
+    await Navigator.push(
       context,
-      customPageTransition: PageTransition(
-        child: ProductScreen(),
-        type: PageTransitionType.fadeIn,
-      ),
+      MaterialPageRoute(builder: (context) => ProductScreen()),
     );
 
     await _animateContainerFromTopToBottom();
   }
 
   _navigateBack() async {
-    await _animateContainerFromBottomToTop();
-
-    Navigation.pop(context);
+    if (!isHomeScreen) {
+      await _animateContainerFromBottomToTop();
+      Navigator.push(context,MaterialPageRoute(builder: (context)=>HomeScreen())); // Return to the previous screen (HomeScreen)
+    }
   }
 
   _animateContainerFromBottomToTop() async {
-    //Animate back to default value
+    // Animate back to default value
     _height = MediaQuery.of(context).padding.top + rh(50);
     setState(() {});
 
-    //Wait till animation is finished
+    // Wait till animation is finished
     await Future.delayed(_duration);
   }
 
   _animateContainerFromTopToBottom() async {
-    //Wait
-    await Future.delayed(_psudoDuration);
+    // Wait
+    await Future.delayed(_pseudoDuration);
 
-    //Animate from top to bottom
+    // Animate from top to bottom
     _height = MediaQuery.of(context).size.height;
     setState(() {});
   }
@@ -66,12 +72,11 @@ class _VendorScreenState extends State<VendorScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    //Default height
-
+    // Default height
     _height = MediaQuery.of(context).padding.top + rh(50);
     setState(() {});
 
-    //Animate Container from Top to bottom
+    // Animate Container from Top to bottom
     _animateContainerFromTopToBottom();
   }
 
@@ -122,7 +127,8 @@ class _VendorScreenState extends State<VendorScreen> {
                         child: VendorInfoCard(
                           title: 'New York Donut',
                           rating: 4.2,
-                          sideImagePath: 'assets/images/temp_vendor_logo.png',
+                          sideImagePath:
+                          'assets/images/temp_vendor_logo.png',
                         ),
                       ),
                     ),
@@ -149,12 +155,20 @@ class _VendorScreenState extends State<VendorScreen> {
                       );
                     },
                     itemBuilder: (BuildContext context, int index) {
+                      // Determine if the product is a favorite or not
+                      bool isFavorite =
+                      /* Determine if it's a favorite */ false;
+
                       return GestureDetector(
                         onTap: _navigate,
                         child: ProductItem(
                           imagePath: productList[index]['imagePath'],
                           title: productList[index]['title'],
                           detail: productList[index]['detail'],
+                          isFavorite: isFavorite, // Pass the isFavorite value
+                          onFavoritePressed: () {
+                            // Handle favorite button press
+                          },
                         ),
                       );
                     },

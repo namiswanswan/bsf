@@ -5,12 +5,10 @@ import 'package:flutter/material.dart';
 import '../utils/utils.dart';
 
 class AppTheme {
-  ///LIGHT MODE
-  ///
 
   static const Color _scaffoldColorLight = Color(0xfff5f5f5);
 
-  static const Color _primaryColorLight = Color(0xff5b2263);
+  static const Color _primaryColorLight = Color(0xFFF5DFD5);
   static const Color _buttonColor = Color(0xfff6596e);
 
   static const Color _secondaryColorLight = Color(0xfff5ded3);

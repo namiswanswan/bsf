@@ -16,6 +16,7 @@ class _CategoryListViewState extends State<CategoryListView> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: rh(120),
+      width: MediaQuery.of(context).size.width,
       child: ListView.builder(
         shrinkWrap: true,
         padding: const EdgeInsets.symmetric(horizontal: space2x),

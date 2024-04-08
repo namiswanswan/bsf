@@ -1,13 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-///Smart Widget
-///
-///Performs Check of platform
-///
-///and returns appropriate widget
 class PlatformButton extends StatelessWidget {
   const PlatformButton({
     required this.child,

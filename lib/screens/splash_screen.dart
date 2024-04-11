@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // Navigate to the next screen
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => LoginScreen()),
+      MaterialPageRoute(builder: (context) => LoginForm()),
     );
   }
 

@@ -18,10 +18,7 @@ class LoginAndSignupBtn extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) {
-                  return const LoginScreen();
-                },
-              ),
+                builder: (context) =>LoginForm())
             );
           },
           child: Text(

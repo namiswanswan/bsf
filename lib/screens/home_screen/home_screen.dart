@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:bsf/screens/home_screen/widgets/vendor_card.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:bsf/core/animations/animations.dart';
 import 'package:bsf/core/animations/fade_animation.dart';
@@ -12,6 +14,7 @@ import '../vendor_screen/vendor_screen.dart';
 import 'package:bsf/screens/home_screen/widgets/category_list_view.dart';
 import 'package:bsf/screens/home_screen/widgets/clipped_container.dart';
 import 'package:bsf/screens/vendor_screen/vendor_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
 
@@ -63,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'Sana',
+                          text: '${FirebaseAuth.instance.currentUser?.displayName}',
                           style: Theme.of(context)
                               .textTheme
                               .headline6!

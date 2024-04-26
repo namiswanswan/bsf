@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:bsf/screens/home_screen/home_screen.dart';
+import 'package:bsf/screens/Login/signup_screen.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({
@@ -53,8 +54,12 @@ class _LoginFormState extends State<LoginForm> {
     }
   }
 
-  void _signUpWithEmail() {
+  void _signUpWithEmail(BuildContext context) {
     // Handle sign up with email action
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SignUpPage()),
+    );
   }
 
   @override

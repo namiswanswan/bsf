@@ -9,6 +9,7 @@ import 'package:bsf/core/animations/animations.dart';
 import 'package:bsf/core/animations/fade_animation.dart';
 import 'package:bsf/core/animations/slide_animation.dart';
 import 'package:bsf/core/utils/navigation.dart';
+import 'package:bsf/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:bsf/core/widgets/custom_widgets.dart';
 import 'package:bsf/screens/home_screen/widgets/category_list_view.dart';
 import 'package:bsf/screens/home_screen/widgets/clipped_container.dart';

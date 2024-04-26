@@ -46,7 +46,7 @@ class _LoginFormState extends State<LoginForm> {
       }
     } catch (error) {
       print('Error signing in with Google: $error');
-      // Handle sign-in errors here
+      // Handle sign-in errors
     } finally {
       setState(() {
         _isGoogleSigningIn = false;

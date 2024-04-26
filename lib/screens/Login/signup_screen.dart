@@ -12,7 +12,6 @@ class _SignUpPageState extends State<SignUpPage>
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
-// Variable to toggle password visibility
   bool _isPasswordVisible = false;
 
 // Function to toggle password visibility

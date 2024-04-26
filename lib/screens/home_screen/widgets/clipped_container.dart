@@ -29,7 +29,7 @@ class ClippedContainer extends StatelessWidget {
           topLeft: Radius.circular(rf(40)),
           bottomLeft: Radius.circular(rf(40)),
         ),
-        color: backgroundColor ?? Theme.of(context).primaryColor,
+        color: backgroundColor ?? const Color(0xFFFAC391),
       ),
       child: child,
     );

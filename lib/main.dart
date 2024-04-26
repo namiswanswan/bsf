@@ -3,7 +3,7 @@ import 'package:bsf/core/theme/app_theme.dart';
 import 'package:bsf/core/utils/size_config.dart';
 import 'package:bsf/screens/splash_screen.dart';
 import 'package:bsf/screens/home_screen/home_screen.dart';
-import 'package:bsf/screens/vendor_screen/vendor_screen.dart';
+import 'package:bsf/screens/vendor_screen/macd.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:bsf/core/utils/navigation.dart'; // Import the Navigation class
@@ -29,7 +29,8 @@ class MyApp extends StatelessWidget {
         initialRoute: '/splash',
         routes: {
           '/splash': (context) => const SplashScreen(),
-          '/vendor_screen': (context) => const VendorScreen(),
+          '/vendor_screen': (context) => VendorScreen(vendor: Vendor(imagePath: '', name: '', rating: 0.0)),
+
           SplashScreen.routeName: (context) => const SplashScreen(),
           HomeScreen.routeName: (context) => const HomeScreen(),
         },

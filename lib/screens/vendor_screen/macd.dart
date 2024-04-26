@@ -5,14 +5,18 @@ import 'package:bsf/core/utils/ui_helper.dart';
 import 'package:bsf/core/utils/utils.dart';
 import 'package:bsf/core/widgets/custom_widgets.dart';
 import 'package:bsf/data.dart';
-import 'package:bsf/screens/splash_screen.dart';
-import 'package:bsf/screens/vendor_screen/widgets/product_item_card.dart';
-import 'package:bsf/screens/vendor_screen/widgets/vendor_info_card.dart';
 import 'package:bsf/screens/home_screen/widgets/clipped_container.dart';
 import 'package:bsf/screens/product_screen/product_screen.dart';
+import 'package:bsf/screens/vendor_screen/widgets/product_item_card.dart';
+import 'package:bsf/screens/vendor_screen/widgets/vendor_info_card.dart';
+import 'package:bsf/core/widgets/app_bar/custom_app_bar.dart' as CoreAppBar;
+
 
 class VendorScreen extends StatefulWidget {
-  const VendorScreen({Key? key}) : super(key: key);
+  static const String macd = '/vendor';
+  final Vendor vendor;
+
+  const VendorScreen({Key? key, required this.vendor}) : super(key: key);
 
   @override
   _VendorScreenState createState() => _VendorScreenState();
@@ -22,48 +26,44 @@ class _VendorScreenState extends State<VendorScreen> {
   late double _height;
 
   final _duration = const Duration(milliseconds: 750);
-  final _pseudoDuration = const Duration(milliseconds: 150);
-
-  bool get isHomeScreen =>
-      ModalRoute.of(context)?.settings.name == '/home';
+  final _psudoDuration = const Duration(milliseconds: 150);
 
   _navigate() async {
     await _animateContainerFromBottomToTop();
 
-    // Execute splash screen transitions
-    await Navigator.pushReplacementNamed(context, '/splash');
-
-    // Push to products screen
-    // Wait till product is popped
-    await Navigator.push(
+    //push to products screen
+    //wait till product is popped
+    await Navigation.push(
       context,
-      MaterialPageRoute(builder: (context) => ProductScreen()),
+      customPageTransition: PageTransition(
+        child: ProductScreen(),
+        type: PageTransitionType.fadeIn,
+      ),
     );
 
     await _animateContainerFromTopToBottom();
   }
 
   _navigateBack() async {
-    if (!isHomeScreen) {
-      await _animateContainerFromBottomToTop();
-      Navigator.push(context,MaterialPageRoute(builder: (context)=>HomeScreen())); // Return to the previous screen (HomeScreen)
-    }
+    await _animateContainerFromBottomToTop();
+
+    Navigation.pop(context);
   }
 
   _animateContainerFromBottomToTop() async {
-    // Animate back to default value
+    //Animate back to default value
     _height = MediaQuery.of(context).padding.top + rh(50);
     setState(() {});
 
-    // Wait till animation is finished
+    //Wait till animation is finished
     await Future.delayed(_duration);
   }
 
   _animateContainerFromTopToBottom() async {
-    // Wait
-    await Future.delayed(_pseudoDuration);
+    //Wait
+    await Future.delayed(_psudoDuration);
 
-    // Animate from top to bottom
+    //Animate from top to bottom
     _height = MediaQuery.of(context).size.height;
     setState(() {});
   }
@@ -72,11 +72,11 @@ class _VendorScreenState extends State<VendorScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    // Default height
+    //Default height
     _height = MediaQuery.of(context).padding.top + rh(50);
     setState(() {});
 
-    // Animate Container from Top to bottom
+    //Animate Container from Top to bottom
     _animateContainerFromTopToBottom();
   }
 
@@ -107,14 +107,14 @@ class _VendorScreenState extends State<VendorScreen> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(30),
                         child: Image.asset(
-                          'assets/images/temp_vendor_bg.png',
+                          'assets/images/mac/mban.png',
                           width: 100 * SizeConfig.heightMultiplier,
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
                     Positioned(
-                      child: CustomAppBar(
+                      child: CoreAppBar.CustomAppBar( // Using the alias for CustomAppBar
                         onBackTap: _navigateBack,
                       ),
                     ),
@@ -125,10 +125,9 @@ class _VendorScreenState extends State<VendorScreen> {
                       child: ClippedContainer(
                         backgroundColor: Colors.white,
                         child: VendorInfoCard(
-                          title: 'New York Donut',
+                          title: 'MacDonalds',
                           rating: 4.2,
-                          sideImagePath:
-                          'assets/images/temp_vendor_logo.png',
+                          sideImagePath: 'assets/images/logo/macd.png',
                         ),
                       ),
                     ),
@@ -143,35 +142,35 @@ class _VendorScreenState extends State<VendorScreen> {
                   begin: const Offset(0, 100),
                   intervalStart: 0.4,
                   duration: const Duration(milliseconds: 1250),
-                  child: ListView.separated(
-                    itemCount: productList.length,
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    separatorBuilder: (BuildContext context, int index) {
-                      return Divider(
-                        height: rh(space4x),
-                        endIndent: rw(20),
-                        indent: rw(20),
-                      );
-                    },
-                    itemBuilder: (BuildContext context, int index) {
-                      // Determine if the product is a favorite or not
-                      bool isFavorite =
-                      /* Determine if it's a favorite */ false;
-
-                      return GestureDetector(
-                        onTap: _navigate,
-                        child: ProductItem(
-                          imagePath: productList[index]['imagePath'],
-                          title: productList[index]['title'],
-                          detail: productList[index]['detail'],
-                          isFavorite: isFavorite, // Pass the isFavorite value
-                          onFavoritePressed: () {
-                            // Handle favorite button press
-                          },
-                        ),
-                      );
-                    },
+                  child: SingleChildScrollView(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      itemCount: productList.length,
+                      padding: EdgeInsets.zero,
+                      separatorBuilder: (BuildContext context, int index) {
+                        return Divider(
+                          height: rh(space4x),
+                          endIndent: rw(20),
+                          indent: rw(20),
+                        );
+                      },
+                      itemBuilder: (BuildContext context, int index) {
+                        return GestureDetector(
+                          onTap: _navigate,
+                          child: ProductItem(
+                            imagePath: maclist[index]['imagePath'],
+                            title: maclist[index]['title'],
+                            detail: maclist[index]['detail'],
+                            isFavorite: false,
+                            onFavoritePressed: () {
+                              // Implement your favorite functionality here
+                            },
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),

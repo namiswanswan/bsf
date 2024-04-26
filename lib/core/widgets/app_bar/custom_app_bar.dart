@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../utils/ui_helper.dart';
 import '../../utils/utils.dart';
 import '../custom_widgets.dart';
-import '/screens/home_screen/home_screen.dart';
 import '/screens/cart.dart';
+import '/screens/Login/login_screen.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
@@ -15,6 +15,7 @@ class CustomAppBar extends StatelessWidget {
     this.isTitleCentered,
     this.isHeroAnimated = true,
     this.actions,
+    this.showLogoutButton = false,
     this.showOptions = true,
   }) : super(key: key);
 
@@ -24,6 +25,7 @@ class CustomAppBar extends StatelessWidget {
   final bool? isTitleCentered;
   final List<Widget>? actions;
   final bool isHeroAnimated;
+  final bool showLogoutButton;
   final bool showOptions;
 
   @override
@@ -44,7 +46,35 @@ class CustomAppBar extends StatelessWidget {
           children: [
             Stack(
               children: <Widget>[
-                // Back Button
+                if (showLogoutButton) // Condition to show logout button
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginForm()),
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.logout,
+                            color: showOptions ? Colors.black : Colors.white,
+                          ),
+                          SizedBox(width: rw(space1x)),
+                          Text(
+                            'LOGOUT',
+                            style: Theme.of(context).textTheme.headline6!.copyWith(
+                              fontSize: rf(14),
+                              color: showOptions ? Colors.black : Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
                 if (hasBackButton)
                   Align(
                     alignment: Alignment.centerLeft,
@@ -67,7 +97,6 @@ class CustomAppBar extends StatelessWidget {
                     ),
                   ),
 
-                // Main Heading and Title
                 Align(
                   child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 50),
@@ -80,7 +109,6 @@ class CustomAppBar extends StatelessWidget {
                   ),
                 ),
 
-                // Actions
                 if (showOptions)
                   Align(
                     alignment: Alignment.centerRight,

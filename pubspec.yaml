@@ -19,6 +19,7 @@ dependencies:
   firebase_core: ^2.28.0
   google_sign_in: ^6.2.1
   firebase_auth: ^4.19.1
+  flutter_cart: ^0.0.9
 
 dev_dependencies:
   flutter_test:
@@ -39,13 +40,6 @@ flutter:
     - assets/images/donut/donut_5.png
     - assets/images/donut/donut_6.png
     - assets/images/donut/donut_7.png
-    - assets/images/logo/donut2_logo.jpg
-    - assets/images/logo/gladis_logo.jpg
-    - assets/images/logo/leliuious_logo.jpg
-    - assets/images/logo/lila_logo.png
-    - assets/images/logo/monginis-logo.png
-    - assets/images/logo/sweet-shop-logo.jpg
-    - assets/images/logo/tasties_logo.jpg
     - assets/images/burger.png
     - assets/images/cloche.png
     - assets/images/delivery.png
@@ -61,15 +55,29 @@ flutter:
     - assets/lottie/load.json
     - assets/icons/chat.png
     - assets/icons/dish.png
-    - assets/icons/facebook.png
-    - assets/icons/google-plus.png
-    - assets/icons/login.png
+    - assets/icons/google.png
     - assets/icons/signup.png
-    - assets/icons/twitter.png
     - assets/images/login_bottom.png
     - assets/images/main_bottom.png
     - assets/images/main_top.png
     - assets/images/signup_top.png
+    - assets/images/empty_shopping_cart.png
+    - assets/images/empty_shopping_cart_image.jpg
+    - assets/images/logofood.png
+    - assets/images/logo/macd.png
+    - assets/images/logo/bk.png
+    - assets/images/logo/dominos.png
+    - assets/images/logo/qc.png
+    - assets/images/logo/dnkn.png
+    - assets/images/logo/kk.png
+    - assets/images/logo/sub.png
+    - assets/images/logo/chesecake-logo.png
+    - assets/images/mac/mcaloo.png
+    - assets/images/mac/mcchick.png
+    - assets/images/mac/mcveg.png
+    - assets/images/mac/panw.png
+    - assets/images/mac/fries.png
+    - assets/images/mac/mban.png
 
   fonts:
     - family: Outfit
